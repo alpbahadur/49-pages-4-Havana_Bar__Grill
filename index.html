@@ -3,9 +3,568 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <meta name="description" content="Havana Bar & Grill - Authentic Cuban cuisine and coastal dining experience with stunning ocean views">
+    <title>HOME | Havana Bar & Grill</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            position: relative;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Animated Caribbean Background with Waves */
+        .caribbean-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0D4F5C 0%, #1A7A8A 25%, #F4E4D7 50%, #0D4F5C 75%, #1A7A8A 100%);
+            background-size: 400% 400%;
+            animation: caribbeanWave 20s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        /* Animated gradient waves */
+        .caribbean-background::before,
+        .caribbean-background::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(26, 122, 138, 0.4) 0%, transparent 70%);
+            animation: oceanWave 25s ease-in-out infinite;
+        }
+
+        .caribbean-background::before {
+            top: -50%;
+            left: -50%;
+            animation-delay: 0s;
+        }
+
+        .caribbean-background::after {
+            bottom: -50%;
+            right: -50%;
+            animation-delay: -12s;
+        }
+
+        @keyframes caribbeanWave {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes oceanWave {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translate(40px, -40px) rotate(120deg) scale(1.15);
+            }
+            66% {
+                transform: translate(-30px, 30px) rotate(240deg) scale(0.95);
+            }
+        }
+
+        /* Cigar Smoke Wisps - Elegant floating shapes */
+        .cigar-smoke {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(200, 180, 160, 0.25), rgba(180, 160, 140, 0.15), transparent);
+            animation: smokeRise 35s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 5;
+            filter: blur(3px);
+        }
+
+        @keyframes smokeRise {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+                transform: translateY(90vh) scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: translateY(40vh) translateX(60px) rotate(180deg) scale(1.3);
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(120px) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Individual smoke wisp positioning */
+        .cigar-smoke:nth-child(1) { left: 10%; width: 80px; height: 120px; animation-delay: 0s; animation-duration: 38s; }
+        .cigar-smoke:nth-child(2) { left: 25%; width: 100px; height: 140px; animation-delay: 5s; animation-duration: 42s; }
+        .cigar-smoke:nth-child(3) { left: 45%; width: 70px; height: 100px; animation-delay: 10s; animation-duration: 36s; }
+        .cigar-smoke:nth-child(4) { right: 20%; width: 90px; height: 130px; animation-delay: 15s; animation-duration: 40s; }
+        .cigar-smoke:nth-child(5) { right: 8%; width: 85px; height: 115px; animation-delay: 20s; animation-duration: 37s; }
+        .cigar-smoke:nth-child(6) { left: 60%; width: 75px; height: 110px; animation-delay: 25s; animation-duration: 39s; }
+
+        /* Tropical Palm Leaves - Floating gently */
+        .palm-leaf {
+            position: fixed;
+            width: 40px;
+            height: 60px;
+            background: radial-gradient(ellipse at 30% 30%, rgba(80, 150, 90, 0.4), rgba(60, 120, 70, 0.3), transparent);
+            border-radius: 50% 0 50% 0;
+            animation: leafFloat 45s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 5;
+            filter: blur(1px);
+        }
+
+        @keyframes leafFloat {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(-45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+                transform: translateY(5vh) rotate(0deg) scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: translateY(50vh) translateX(-40px) rotate(180deg) scale(1.1);
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(105vh) translateX(-80px) rotate(360deg) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        /* Individual leaf positioning */
+        .palm-leaf:nth-child(7) { left: 5%; animation-delay: 0s; animation-duration: 48s; }
+        .palm-leaf:nth-child(8) { left: 30%; animation-delay: 8s; animation-duration: 52s; }
+        .palm-leaf:nth-child(9) { right: 15%; animation-delay: 16s; animation-duration: 46s; }
+        .palm-leaf:nth-child(10) { right: 35%; animation-delay: 24s; animation-duration: 50s; }
+        .palm-leaf:nth-child(11) { left: 70%; animation-delay: 32s; animation-duration: 47s; }
+        .palm-leaf:nth-child(12) { right: 50%; animation-delay: 40s; animation-duration: 49s; }
+
+        /* Ocean Bubbles - Subtle rising bubbles */
+        .ocean-bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            animation: bubbleRise 12s ease-in infinite;
+            pointer-events: none;
+            z-index: 5;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes bubbleRise {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+                transform: translateY(90vh) scale(1);
+            }
+            50% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-5vh) translateX(30px) scale(0.7);
+                opacity: 0;
+            }
+        }
+
+        /* Individual bubble positioning */
+        .ocean-bubble:nth-child(13) { left: 3%; width: 6px; height: 6px; animation-delay: 0s; animation-duration: 14s; }
+        .ocean-bubble:nth-child(14) { left: 15%; width: 8px; height: 8px; animation-delay: 2s; animation-duration: 11s; }
+        .ocean-bubble:nth-child(15) { left: 40%; width: 5px; height: 5px; animation-delay: 4s; animation-duration: 13s; }
+        .ocean-bubble:nth-child(16) { right: 10%; width: 7px; height: 7px; animation-delay: 6s; animation-duration: 12s; }
+        .ocean-bubble:nth-child(17) { right: 30%; width: 6px; height: 6px; animation-delay: 8s; animation-duration: 15s; }
+        .ocean-bubble:nth-child(18) { left: 55%; width: 8px; height: 8px; animation-delay: 10s; animation-duration: 13s; }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Content styling */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Image hover effects */
+        .hover-zoom {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hover-zoom:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        /* Navigation smooth transitions */
+        nav a {
+            transition: all 0.3s ease;
+        }
+
+        /* Custom gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0D4F5C, #1A7A8A, #D4A574);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
 </head>
 <body>
-    <!-- Content will be added here -->
+    <!-- Animated Caribbean Background -->
+    <div class="caribbean-background"></div>
+
+    <!-- Cigar Smoke Wisps (6 elements) -->
+    <div class="cigar-smoke"></div>
+    <div class="cigar-smoke"></div>
+    <div class="cigar-smoke"></div>
+    <div class="cigar-smoke"></div>
+    <div class="cigar-smoke"></div>
+    <div class="cigar-smoke"></div>
+
+    <!-- Tropical Palm Leaves (6 elements) -->
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+    <div class="palm-leaf"></div>
+
+    <!-- Ocean Bubbles (6 elements) -->
+    <div class="ocean-bubble"></div>
+    <div class="ocean-bubble"></div>
+    <div class="ocean-bubble"></div>
+    <div class="ocean-bubble"></div>
+    <div class="ocean-bubble"></div>
+    <div class="ocean-bubble"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/70 to-transparent backdrop-blur-sm">
+            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="./assets/image_3.png" alt="Havana Bar & Grill Logo" class="h-12 md:h-16">
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-amber-300 font-medium">Home</a>
+                    <a href="#about" class="text-white hover:text-amber-300 font-medium">About</a>
+                    <a href="#menu" class="text-white hover:text-amber-300 font-medium">Menu</a>
+                    <a href="#gallery" class="text-white hover:text-amber-300 font-medium">Gallery</a>
+                    <a href="#contact" class="text-white hover:text-amber-300 font-medium">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
+                <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                    <a href="#home" class="text-white hover:text-amber-300 font-medium">Home</a>
+                    <a href="#about" class="text-white hover:text-amber-300 font-medium">About</a>
+                    <a href="#menu" class="text-white hover:text-amber-300 font-medium">Menu</a>
+                    <a href="#gallery" class="text-white hover:text-amber-300 font-medium">Gallery</a>
+                    <a href="#contact" class="text-white hover:text-amber-300 font-medium">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('./assets/image_5.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
+            <div class="container mx-auto px-4 text-center relative z-10 fade-in">
+                <h1 class="text-6xl md:text-8xl font-bold text-white mb-6 drop-shadow-2xl">HAVANA</h1>
+                <p class="text-2xl md:text-4xl text-amber-300 mb-8 font-light">Bar & Grill</p>
+                <p class="text-xl md:text-2xl text-white mb-12 max-w-2xl mx-auto">Experience Authentic Cuban Flavors with Breathtaking Ocean Views</p>
+                <a href="#menu" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Explore Our Menu
+                </a>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gradient-to-b from-slate-900/95 to-teal-900/95 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <h2 class="text-5xl font-bold text-amber-300 mb-6">Welcome to Havana</h2>
+                        <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                            Step into a world where the vibrant spirit of Cuba meets the tranquil beauty of coastal dining.
+                            At Havana Bar & Grill, we bring you an authentic taste of Cuban cuisine paired with stunning ocean views
+                            that will transport you to the shores of the Caribbean.
+                        </p>
+                        <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                            Our passionate chefs craft every dish with traditional Cuban recipes passed down through generations,
+                            using only the freshest ingredients and bold, authentic flavors. Whether you're here for our signature
+                            seafood dishes or our handcrafted cocktails, every moment at Havana is a celebration.
+                        </p>
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-amber-400">10+</div>
+                                <div class="text-sm text-gray-300 mt-2">Years Serving</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-amber-400">50+</div>
+                                <div class="text-sm text-gray-300 mt-2">Menu Items</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-amber-400">5★</div>
+                                <div class="text-sm text-gray-300 mt-2">Reviews</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 fade-in">
+                        <img src="./assets/image_11.jpg" alt="Restaurant Interior" class="rounded-lg shadow-2xl hover-zoom w-full h-64 object-cover">
+                        <img src="./assets/image_5.jpg" alt="Ocean View Dining" class="rounded-lg shadow-2xl hover-zoom w-full h-64 object-cover mt-8">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Highlights Section -->
+        <section id="menu" class="py-20 bg-gradient-to-b from-teal-900/95 to-slate-900/95 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold text-amber-300 mb-4">Our Specialties</h2>
+                    <p class="text-xl text-gray-200 max-w-2xl mx-auto">Discover the authentic flavors of Cuba, crafted with passion and served with pride</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Menu Item 1 -->
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl hover-zoom">
+                        <img src="./assets/image_6.jpg" alt="Seafood Pasta" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-300 mb-2">Mariscos Pasta</h3>
+                            <p class="text-gray-300">Fresh seafood pasta with mussels, shrimp, and our signature spicy tomato sauce</p>
+                        </div>
+                    </div>
+                    <!-- Menu Item 2 -->
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl hover-zoom">
+                        <img src="./assets/image_7.jpg" alt="Grilled Fish" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-300 mb-2">Pescado Havana</h3>
+                            <p class="text-gray-300">Perfectly grilled whole fish with citrus marinade and fresh vegetables</p>
+                        </div>
+                    </div>
+                    <!-- Menu Item 3 -->
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl hover-zoom">
+                        <img src="./assets/image_8.jpg" alt="Seafood Rice" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-300 mb-2">Arroz con Mariscos</h3>
+                            <p class="text-gray-300">Cuban-style seafood rice with clams, shrimp, and saffron infusion</p>
+                        </div>
+                    </div>
+                    <!-- Menu Item 4 -->
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl hover-zoom">
+                        <img src="./assets/image_9.jpg" alt="Calamari" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-300 mb-2">Calamares Fritos</h3>
+                            <p class="text-gray-300">Crispy golden calamari rings served with zesty lime aioli</p>
+                        </div>
+                    </div>
+                    <!-- Menu Item 5 -->
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl hover-zoom">
+                        <img src="./assets/image_10.jpg" alt="Margaritas" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-300 mb-2">Classic Margarita</h3>
+                            <p class="text-gray-300">Handcrafted margaritas with fresh lime juice and premium tequila</p>
+                        </div>
+                    </div>
+                    <!-- Menu Item 6 -->
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl hover-zoom">
+                        <img src="./assets/image_2.jpg" alt="Ocean Experience" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-amber-300 mb-2">The Experience</h3>
+                            <p class="text-gray-300">More than a meal - it's a journey to the Caribbean coast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 bg-gradient-to-b from-slate-900/95 to-teal-900/95 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold text-amber-300 mb-4">Atmosphere</h2>
+                    <p class="text-xl text-gray-200 max-w-2xl mx-auto">Dine with a view that takes your breath away</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <img src="./assets/image_5.jpg" alt="Ocean View Dining" class="rounded-xl shadow-2xl hover-zoom w-full h-96 object-cover">
+                    <img src="./assets/image_11.jpg" alt="Evening Ambiance" class="rounded-xl shadow-2xl hover-zoom w-full h-96 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gradient-to-b from-teal-900/95 to-black/95 backdrop-blur-sm">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-5xl font-bold text-amber-300 mb-6">Visit Us</h2>
+                        <p class="text-lg text-gray-200 mb-8">Join us for an unforgettable dining experience where the flavors of Cuba meet the beauty of the ocean.</p>
+                        <div class="space-y-4 text-gray-200">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-amber-400 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-amber-300">Location</div>
+                                    <div>Coastal Paradise</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-amber-400 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-amber-300">Hours</div>
+                                    <div>Mon-Thu: 11AM - 10PM</div>
+                                    <div>Fri-Sun: 11AM - 11PM</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-amber-400 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-amber-300">Reservations</div>
+                                    <div>Call us to reserve your table</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 backdrop-blur-sm rounded-xl p-8">
+                        <h3 class="text-3xl font-bold text-amber-300 mb-6">Reserve Your Table</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-amber-400/30 text-white placeholder-gray-400 focus:outline-none focus:border-amber-400 transition-colors">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-amber-400/30 text-white placeholder-gray-400 focus:outline-none focus:border-amber-400 transition-colors">
+                            </div>
+                            <div>
+                                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-amber-400/30 text-white placeholder-gray-400 focus:outline-none focus:border-amber-400 transition-colors">
+                            </div>
+                            <div>
+                                <input type="date" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-amber-400/30 text-white placeholder-gray-400 focus:outline-none focus:border-amber-400 transition-colors">
+                            </div>
+                            <div>
+                                <select class="w-full px-4 py-3 rounded-lg bg-white/10 border border-amber-400/30 text-white focus:outline-none focus:border-amber-400 transition-colors">
+                                    <option class="bg-slate-800">Number of Guests</option>
+                                    <option class="bg-slate-800">1-2 Guests</option>
+                                    <option class="bg-slate-800">3-4 Guests</option>
+                                    <option class="bg-slate-800">5-6 Guests</option>
+                                    <option class="bg-slate-800">7+ Guests</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                                Make Reservation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black/90 backdrop-blur-sm py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <img src="./assets/image_3.png" alt="Havana Bar & Grill Logo" class="h-12">
+                    </div>
+                    <div class="text-gray-400 text-center md:text-right">
+                        <p>&copy; 2025 Havana Bar & Grill. All rights reserved.</p>
+                        <p class="mt-2">www.havanabarandgrill.com</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
